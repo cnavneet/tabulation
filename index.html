@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Navneet Choudhary </title>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mithril/1.1.6/mithril.min.js"></script>
+	
+	<script src="mithril.min.js"></script>
+
+</head>
+<body style="text-align: center;">
+	
+	
+	<script>
+		var dataSet = [
+    [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" ],
+    [ "Garrett Winters", "Accountant", "Tokyo", "8422", "2011/07/25", "$170,750" ],
+    [ "Ashton Cox", "Junior Technical Author", "San Francisco", "1562", "2009/01/12", "$86,000" ],
+    [ "Cedric Kelly", "Senior Javascript Developer", "Edinburgh", "6224", "2012/03/29", "$433,060" ],
+    [ "Airi Satou", "Accountant", "Tokyo", "5407", "2008/11/28", "$162,700" ],
+    [ "Brielle Williamson", "Integration Specialist", "New York", "4804", "2012/12/02", "$372,000" ],
+    [ "Herrod Chandler", "Sales Assistant", "San Francisco", "9608", "2012/08/06", "$137,500" ],
+    [ "Rhona Davidson", "Integration Specialist", "Tokyo", "6200", "2010/10/14", "$327,900" ],
+    [ "Colleen Hurst", "Javascript Developer", "San Francisco", "2360", "2009/09/15", "$205,500" ],
+    [ "Sonya Frost", "Software Engineer", "Edinburgh", "1667", "2008/12/13", "$103,600" ],
+    [ "Jena Gaines", "Office Manager", "London", "3814", "2008/12/19", "$90,560" ],
+    [ "Quinn Flynn", "Support Lead", "Edinburgh", "9497", "2013/03/03", "$342,000" ],
+    [ "Charde Marshall", "Regional Director", "San Francisco", "6741", "2008/10/16", "$470,600" ],
+    [ "Haley Kennedy", "Senior Marketing Designer", "London", "3597", "2012/12/18", "$313,500" ],
+    [ "Tatyana Fitzpatrick", "Regional Director", "London", "1965", "2010/03/17", "$385,750" ],
+    [ "Michael Silva", "Marketing Designer", "London", "1581", "2012/11/27", "$198,500" ],
+    [ "Paul Byrd", "Chief Financial Officer (CFO)", "New York", "3059", "2010/06/09", "$725,000" ],
+    [ "Gloria Little", "Systems Administrator", "New York", "1721", "2009/04/10", "$237,500" ],
+    [ "Bradley Greer", "Software Engineer", "London", "2558", "2012/10/13", "$132,000" ],
+    [ "Dai Rios", "Personnel Lead", "Edinburgh", "2290", "2012/09/26", "$217,500" ],
+    [ "Jenette Caldwell", "Development Lead", "New York", "1937", "2011/09/03", "$345,000" ],
+    [ "Yuri Berry", "Chief Marketing Officer (CMO)", "New York", "6154", "2009/06/25", "$675,000" ],
+    [ "Caesar Vance", "Pre-Sales Support", "New York", "8330", "2011/12/12", "$106,450" ],
+    [ "Doris Wilder", "Sales Assistant", "Sidney", "3023", "2010/09/20", "$85,600" ],
+    [ "Angelica Ramos", "Chief Executive Officer (CEO)", "London", "5797", "2009/10/09", "$1,200,000" ],
+    [ "Gavin Joyce", "Developer", "Edinburgh", "8822", "2010/12/22", "$92,575" ],
+    [ "Jennifer Chang", "Regional Director", "Singapore", "9239", "2010/11/14", "$357,650" ],
+    [ "Brenden Wagner", "Software Engineer", "San Francisco", "1314", "2011/06/07", "$206,850" ],
+    [ "Fiona Green", "Chief Operating Officer (COO)", "San Francisco", "2947", "2010/03/11", "$850,000" ],
+    [ "Shou Itou", "Regional Marketing", "Tokyo", "8899", "2011/08/14", "$163,000" ],
+    [ "Michelle House", "Integration Specialist", "Sidney", "2769", "2011/06/02", "$95,400" ],
+    [ "Suki Burks", "Developer", "London", "6832", "2009/10/22", "$114,500" ],
+    [ "Prescott Bartlett", "Technical Author", "London", "3606", "2011/05/07", "$145,000" ],
+    [ "Gavin Cortez", "Team Leader", "San Francisco", "2860", "2008/10/26", "$235,500" ],
+    [ "Martena Mccray", "Post-Sales support", "Edinburgh", "8240", "2011/03/09", "$324,050" ],
+    [ "Unity Butler", "Marketing Designer", "San Francisco", "5384", "2009/12/09", "$85,675" ]
+];
+
+
+		var root = document.body
+		var a=m.prop(10)
+		var count = 0 // added a variable
+		var stuffwetype=m.prop(1)
+		var start=1
+		var outof=10
+		var last=dataSet.length
+
+function view_table(){
+	if(stuffwetype())
+	{
+		start=parseInt(stuffwetype())
+	}
+	if(a())
+	{
+		outof=parseInt(a())
+	}
+	var rows=[]
+	var col=[]
+	col.push(m("td"," "))
+	col.push(m("td","name"))
+	col.push(m("td","designation"))
+	col.push(m("td","location"))
+	col.push(m("td","id no."))
+	col.push(m("td","date of joining"))
+	col.push(m("td","salary"))
+	rows.push(m("tr",{class:"f3 bg-orange white b"},col))
+	for(var i=start-1;i<start+outof-1;++i)
+	{
+		var cols=[]
+		cols.push(m("td",{class:"f4"},i+1))
+		for(var j=0;j<dataSet[i].length;++j)
+		{
+            cols.push(m("td",{class:"f4"}, dataSet[i][j]))
+		}
+		rows.push(m("tr", cols))
+	}
+	return m("table",{class:"ba b--orange tc w-100"}, m("tbody", rows))
+}
+
+var Hello = {
+    view: function(ctrl) {
+        return m("main", [
+            m("h1", {
+                class: "f1 orange tc" 
+            }, "uni.xyz"),
+            m("button", {
+                onclick: function() {start=1,stuffwetype(start),a(outof)}, class:"bg-orange white bn"
+            }, "|<"),
+             m("button", {
+                onclick: function() { if(start<outof){start=1,stuffwetype(start),a(outof)}else{start=start-outof,stuffwetype(start),a(outof)}},class:"bg-orange white bn"
+            }, "<<"),
+              m("button", {
+                onclick: function() {if(start>1){start--,stuffwetype(start),a(outof)}else{start=1,stuffwetype(start),a(outof)}},class:"bg-orange white bn"
+            }, "<"),
+               m("span", {
+                class: "b"
+            }, "Showing"),
+               m('input#instructions[type=number].form-control input-lg', {
+            value: a(),
+            oninput: m.withAttr('value',a), class:"tc"}),
+               m("span", {
+                class: "b"
+            }, "rows out of"),
+               m('input#instructions[type=number].form-control input-lg', {
+            value: dataSet.length,
+            oninput: m.withAttr('value',stuffwetype), class:"tc"}),
+                m("span", {
+                class: "b" 
+            }, "starting at row"),
+                m('input#instructions[type=number].form-control input-lg', {
+            value: stuffwetype(),
+            oninput: m.withAttr('value',stuffwetype),class:"tc"}),
+                m("button", {
+                onclick: function() {if(start+outof+1<=last){start=start+1,stuffwetype(start),a(outof)}}.bind(this),class:"bg-orange white bn" 
+            }, ">"),
+                 m("button", {
+                onclick: function() {if(start+outof<last-outof+1){start=start+outof,stuffwetype(start),a(outof)}},class:"bg-orange white bn" 
+            }, ">>"),
+                  m("button", {
+                onclick: function() {start=last-outof+1,stuffwetype(start),a(outof)},class:"bg-orange white bn"
+            }, ">|"),
+            	 
+            	 view_table(),
+        ])
+    }
+}
+
+
+m.mount(root, Hello)
+	</script>
+</br></br>
+	<div class="gray"> &copy Copyright reserved and developed by navneet choudhary, B.E Final year student , Jadavpur University, 8274965854<br> 
+	Looking forward for a call letter(offer letter) from uni.xyz Vibhor Meshram</div>
+</body>
+</html>
